@@ -1,13 +1,60 @@
+const archiver = require('archiver');
 const { Document, PrintConfig } = require('../models');
 const pdfService = require('../services/pdfServices');
-const path = require('path');
 
 exports.generateSingle = async (req, res) => {
-  res.status(200).json({ message: 'Generar PDF de un solo documento' });
+
+  try {
+    const { id } = req.params;
+    const docData = await Document.findByPk(id);
+    if (!docData) {
+      return res.status(404).json({ message: 'Documento no encontrado' });
+    }
+
+    const filename = `document_${docData.name}.pdf`;
+    res.writeHead(200, {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `attachment; filename=${filename}}.pdf`,
+    });
+
+    pdfService.generatePDF(
+      res, docData
+    );
+  } catch (error) {
+    console.error('Error generating PDF', error);
+    res.status(500).json({ message: 'Error generating PDF' });
+  }
 };
 
 exports.generateMultipleZip = async (req, res) => {
-    res.status(200).json({ message:  'Generar archivo comprido zip de los PDF ' });
+  try {
+    const { ids } = req.body;
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ message: 'IDs de documentos son requeridos' });
+    }
+    const documents = await Document.findAll({ where: { id: ids } });
+    if (documents.length === 0) {
+      return res.status(404).json({ message: 'No se encontraron documentos' });
+    }
+    res.writeHead(200, {
+      'Content-Type': 'application/zip',
+      'Content-Disposition': 'attachment; filename=documents.zip',
+    });
+    const archive = archiver('zip', { zlib: { level: 9 } });
+    archive.pipe(res);
+    for (const doc of documents) {
+      const pdfStream = new require('stream').PassThrough();
+      pdfService.generatePDF(
+        pdfStream,
+        doc
+      );
+      archive.append(pdfStream, { name: `document_${doc.name}.pdf` });
+    }
+    await archive.finalize();
+  } catch (error) {
+    console.error('Error generating ZIP of PDFs', error);
+    res.status(500).json({ message: 'Error generating ZIP of PDFs' });
+  }
 };
 
 
