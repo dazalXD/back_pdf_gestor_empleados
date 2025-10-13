@@ -4,7 +4,7 @@ require('dotenv').config();
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await User.findAll({
-            attributes: ['username', 'status', 'start_work', 'end_work', 'createdAt'] // traer solo campos necesarios
+            attributes: ['id', 'username', 'status', 'start_work', 'end_work', 'createdAt'] // traer solo campos necesarios
         });
 
         res.json(users);

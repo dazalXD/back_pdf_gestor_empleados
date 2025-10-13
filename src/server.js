@@ -3,9 +3,12 @@ require('dotenv').config();
 const { sequelize } = require('./models');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+app.options('*', cors()); // responder preflight
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
