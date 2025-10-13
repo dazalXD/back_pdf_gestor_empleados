@@ -23,6 +23,12 @@ exports.createUser = async (req, res) => {
             return res.status(400).json({ message: 'username y password son requeridos' });
         }
 
+        // verificar si el usuario ya existe
+        const existingUser = await User.findOne({ where: { username } });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Este nombre de usuario ya existe' });
+        }
+
         // crear usuario
         const user = await User.create({ username, password, status, start_work, end_work });
         res.status(201).json({
@@ -30,8 +36,10 @@ exports.createUser = async (req, res) => {
             username: user.username
         });
     } catch (error) {
+        res.status(500).json({ message: 'Error al crear usuario' });
         console.error('Error al crear usuario', error);
     }
+
 }
 
 exports.getUserById = async (req, res) => {
