@@ -1,0 +1,85 @@
+# 🧾 Backend - Sistema de Gestión de Empleados
+
+Este proyecto es la API backend para el **Sistema de Gestión de Empleados**, desarrollada en **Node.js** con **Express** y **Sequelize ORM**.  
+El sistema permite manejar usuarios, autenticación por JWT, documentos y generación de PDFs, con una base de datos **MySQL**.
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+- **Node.js** (runtime de JavaScript)
+- **Express.js** (framework backend)
+- **MySQL** (gestor de base de datos relacional)
+- **Sequelize ORM** (mapeo objeto-relacional)
+- **JWT (jsonwebtoken)** (autenticación)
+- **bcrypt** (encriptación de contraseñas)
+- **Swagger** (documentación de la API)
+- **Multer + PDFKit + Archiver** (gestión y generación de archivos)
+- **CORS y dotenv** (configuración y seguridad)
+
+---
+
+## ⚙️ Requisitos previos
+
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
+
+- [Node.js](https://nodejs.org/) v16 o superior  
+- [MySQL](https://www.mysql.com/) o un cliente de base de datos compatible
+
+> ⚠️ **No es necesario crear las tablas manualmente**, Sequelize las genera automáticamente al iniciar el servidor.
+
+---
+
+## 🔐 Variables de Entorno
+Crea un archivo .env en la raíz del proyecto.
+
+Puedes basarte en el archivo .env.example incluido en el repositorio.
+
+Ejemplo de .env
+Fragmento de código
+
+PORT=3000
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=db_gestion_empleados
+DB_USER=root
+DB_PASS=your_password
+JWT_SECRET=clave_super_secreta_123
+
+
+## 🧩 Instalación
+
+Clona el repositorio y entra al directorio del proyecto:
+
+git clone https://github.com/tu_usuario/gestion-empleados-backend-node.git
+cd gestion-empleados-backend-node
+
+
+Instala las dependencias:
+
+npm install
+
+## ▶️ Ejecución del servidor
+
+npm run dev
+
+--- 
+
+## 🧠 Documentación de la API (Swagger)
+
+El proyecto incluye documentación interactiva generada automáticamente con Swagger.
+Puedes acceder a ella una vez que el servidor esté corriendo:
+
+🔗 Swagger UI:
+http://localhost:3000/api/docs
+
+🔗 JSON de especificación:
+http://localhost:3000/api-docs.json
+
+--- 
+
+### ✨ Autor
+
+Desarrollado por Dazz 🧠
+
+nota: si se descarga junto con el front ejecutar primero el back y luego el front
