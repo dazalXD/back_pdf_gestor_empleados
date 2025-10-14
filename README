@@ -78,6 +78,10 @@ http://localhost:3000/api-docs.json
 
 --- 
 
+usuario predeterminado:
+user: admin
+pass: 123456
+
 ### ✨ Autor
 
 Desarrollado por Dazz 🧠

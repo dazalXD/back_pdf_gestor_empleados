@@ -4,6 +4,7 @@ const { sequelize } = require('./models');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
+const User = require('./models/ModelUser');
 
 const app = express();
 app.use(express.json());
@@ -63,8 +64,23 @@ async function start() {
     try {
         await sequelize.authenticate();
         console.log('DB connected');
-        // sync sólo si quieres crear tablas automáticamente (evitar en prod)
+
+        const admin = await User.findOne({ where: { username: 'admin' } });
+        if (!admin) {
+            await User.create({ 
+                username: 'admin', 
+                password: '123456', 
+                status: 'activo',
+                start_work: '00:00:00',
+                end_work: '23:59:59'
+             });
+        } else {
+            console.log('Admin user already exists');
+        }
+
+
         await sequelize.sync({ alter: true });
+
         app.listen(PORT, () => console.log('Server on', PORT));
     } catch (err) {
         console.error(err);
