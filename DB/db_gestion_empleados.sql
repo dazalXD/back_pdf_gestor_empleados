@@ -16,12 +16,10 @@
 
 
 -- Volcando estructura de base de datos para db_gestion_empleados
-DROP DATABASE IF EXISTS `db_gestion_empleados`;
 CREATE DATABASE IF NOT EXISTS `db_gestion_empleados` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `db_gestion_empleados`;
 
 -- Volcando estructura para tabla db_gestion_empleados.documents
-DROP TABLE IF EXISTS `documents`;
 CREATE TABLE IF NOT EXISTS `documents` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -32,12 +30,11 @@ CREATE TABLE IF NOT EXISTS `documents` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla db_gestion_empleados.permissions
-DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE IF NOT EXISTS `permissions` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -48,13 +45,47 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   UNIQUE KEY `key` (`key`),
   UNIQUE KEY `key_2` (`key`),
   UNIQUE KEY `key_3` (`key`),
-  UNIQUE KEY `key_4` (`key`)
+  UNIQUE KEY `key_4` (`key`),
+  UNIQUE KEY `key_5` (`key`),
+  UNIQUE KEY `key_6` (`key`),
+  UNIQUE KEY `key_7` (`key`),
+  UNIQUE KEY `key_8` (`key`),
+  UNIQUE KEY `key_9` (`key`),
+  UNIQUE KEY `key_10` (`key`),
+  UNIQUE KEY `key_11` (`key`),
+  UNIQUE KEY `key_12` (`key`),
+  UNIQUE KEY `key_13` (`key`),
+  UNIQUE KEY `key_14` (`key`),
+  UNIQUE KEY `key_15` (`key`),
+  UNIQUE KEY `key_16` (`key`),
+  UNIQUE KEY `key_17` (`key`),
+  UNIQUE KEY `key_18` (`key`),
+  UNIQUE KEY `key_19` (`key`),
+  UNIQUE KEY `key_20` (`key`),
+  UNIQUE KEY `key_21` (`key`),
+  UNIQUE KEY `key_22` (`key`),
+  UNIQUE KEY `key_23` (`key`),
+  UNIQUE KEY `key_24` (`key`),
+  UNIQUE KEY `key_25` (`key`),
+  UNIQUE KEY `key_26` (`key`),
+  UNIQUE KEY `key_27` (`key`),
+  UNIQUE KEY `key_28` (`key`),
+  UNIQUE KEY `key_29` (`key`),
+  UNIQUE KEY `key_30` (`key`),
+  UNIQUE KEY `key_31` (`key`),
+  UNIQUE KEY `key_32` (`key`),
+  UNIQUE KEY `key_33` (`key`),
+  UNIQUE KEY `key_34` (`key`),
+  UNIQUE KEY `key_35` (`key`),
+  UNIQUE KEY `key_36` (`key`),
+  UNIQUE KEY `key_37` (`key`),
+  UNIQUE KEY `key_38` (`key`),
+  UNIQUE KEY `key_39` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla db_gestion_empleados.print_configs
-DROP TABLE IF EXISTS `print_configs`;
 CREATE TABLE IF NOT EXISTS `print_configs` (
   `id` int NOT NULL AUTO_INCREMENT,
   `pageSize` varchar(255) DEFAULT NULL,
@@ -69,7 +100,6 @@ CREATE TABLE IF NOT EXISTS `print_configs` (
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla db_gestion_empleados.users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -83,13 +113,47 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `username_2` (`username`),
   UNIQUE KEY `username_3` (`username`),
-  UNIQUE KEY `username_4` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `username_4` (`username`),
+  UNIQUE KEY `username_5` (`username`),
+  UNIQUE KEY `username_6` (`username`),
+  UNIQUE KEY `username_7` (`username`),
+  UNIQUE KEY `username_8` (`username`),
+  UNIQUE KEY `username_9` (`username`),
+  UNIQUE KEY `username_10` (`username`),
+  UNIQUE KEY `username_11` (`username`),
+  UNIQUE KEY `username_12` (`username`),
+  UNIQUE KEY `username_13` (`username`),
+  UNIQUE KEY `username_14` (`username`),
+  UNIQUE KEY `username_15` (`username`),
+  UNIQUE KEY `username_16` (`username`),
+  UNIQUE KEY `username_17` (`username`),
+  UNIQUE KEY `username_18` (`username`),
+  UNIQUE KEY `username_19` (`username`),
+  UNIQUE KEY `username_20` (`username`),
+  UNIQUE KEY `username_21` (`username`),
+  UNIQUE KEY `username_22` (`username`),
+  UNIQUE KEY `username_23` (`username`),
+  UNIQUE KEY `username_24` (`username`),
+  UNIQUE KEY `username_25` (`username`),
+  UNIQUE KEY `username_26` (`username`),
+  UNIQUE KEY `username_27` (`username`),
+  UNIQUE KEY `username_28` (`username`),
+  UNIQUE KEY `username_29` (`username`),
+  UNIQUE KEY `username_30` (`username`),
+  UNIQUE KEY `username_31` (`username`),
+  UNIQUE KEY `username_32` (`username`),
+  UNIQUE KEY `username_33` (`username`),
+  UNIQUE KEY `username_34` (`username`),
+  UNIQUE KEY `username_35` (`username`),
+  UNIQUE KEY `username_36` (`username`),
+  UNIQUE KEY `username_37` (`username`),
+  UNIQUE KEY `username_38` (`username`),
+  UNIQUE KEY `username_39` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- La exportación de datos fue deseleccionada.
 
 -- Volcando estructura para tabla db_gestion_empleados.user_permissions
-DROP TABLE IF EXISTS `user_permissions`;
 CREATE TABLE IF NOT EXISTS `user_permissions` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
