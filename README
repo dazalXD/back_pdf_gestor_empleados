@@ -51,7 +51,7 @@ JWT_SECRET=clave_super_secreta_123
 
 Clona el repositorio y entra al directorio del proyecto:
 
-git clone https://github.com/tu_usuario/gestion-empleados-backend-node.git
+git clone https://github.com/dazalXD/back_pdf_gestor_empleados.git
 cd gestion-empleados-backend-node
 
 
