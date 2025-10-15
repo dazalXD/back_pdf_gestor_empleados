@@ -22,7 +22,6 @@ exports.createUser = async (req, res) => {
         if (!username || !password) {
             return res.status(400).json({ message: 'username y password son requeridos' });
         }
-
         // verificar si el usuario ya existe
         const existingUser = await User.findOne({ where: { username } });
         if (existingUser) {

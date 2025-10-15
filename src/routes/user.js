@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersCtrl = require('../controller/userController');
 const verifyToken = require('../middleware/auth');
-
+const checkPermission = require('../middleware/checkPermissions');
 /**
  * @swagger
  * tags:
@@ -16,6 +16,7 @@ const verifyToken = require('../middleware/auth');
  *   get:
  *     tags: [Users]
  *     summary: Obtiene la lista de usuarios (protegido)
+ *     description: Requiere el permiso `users.create`.
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -33,8 +34,14 @@ const verifyToken = require('../middleware/auth');
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
+ *       403:
+ *          description: El usuario no tiene el permiso 'users.create'
+ *          content:
+ *          application/json:
+ *            schema:
+ *             $ref: '#/components/schemas/ErrorResponse'
  */
-router.get('/', verifyToken, usersCtrl.getAllUsers);
+router.get('/', verifyToken, checkPermission('users.access'), usersCtrl.getAllUsers);
 
 /**
  * @swagger

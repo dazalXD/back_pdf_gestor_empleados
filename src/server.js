@@ -4,7 +4,8 @@ const { sequelize } = require('./models');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
-const User = require('./models/ModelUser');
+const Permission = require('./utils/Seedpermissions');
+const CreateUser = require('./utils/CreateUserAdmin');
 
 const app = express();
 app.use(express.json());
@@ -14,10 +15,12 @@ app.options('*', cors()); // responder preflight
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const docRoutes = require('./routes/documents');
+const permissionRouter = require('./routes/permissions');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/documents', docRoutes);
+app.use('/api/permissions', permissionRouter);
 
 // --- Swagger setup ---4
 const swaggerDefinition = {
@@ -49,6 +52,7 @@ const options = {
         "./src/routes/auth.js",
         "./src/routes/user.js",
         "./src/routes/documents.js",
+        "./src/routes/permissions.js"
     ],
 };
 
@@ -65,21 +69,11 @@ async function start() {
         await sequelize.authenticate();
         console.log('DB connected');
 
-        const admin = await User.findOne({ where: { username: 'admin' } });
-        if (!admin) {
-            await User.create({ 
-                username: 'admin', 
-                password: '123456', 
-                status: 'activo',
-                start_work: '00:00:00',
-                end_work: '23:59:59'
-             });
-        } else {
-            console.log('Admin user already exists');
-        }
-
-
         await sequelize.sync({ alter: true });
+        // Seed initial permissions
+        await Permission.seedPermissions();
+        // Create super admin user if not exists
+        await CreateUser.CreateSuperAdmin();
 
         app.listen(PORT, () => console.log('Server on', PORT));
     } catch (err) {
